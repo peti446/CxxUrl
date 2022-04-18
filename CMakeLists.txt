@@ -3,7 +3,6 @@ project(CxxUrl
     VERSION 0.3.0
 )
 
-
 #*********************************************************
 # GLOBAL OPTIONS - you can change those
 # Note: that options are cached, so in order to reavaluate options
@@ -14,7 +13,11 @@ option(ENABLE_INSTALL "Flag to indicate if the install target should be availabl
 
 if(${PROJECT_IS_TOP_LEVEL})
     # This will be executed if the current project is top level
-    add_definitions(-D_GNU_SOURCE -Wall -Wextra)
+	if (MSVC)
+		add_compile_options(/Wall)
+	else()
+		add_definitions(-D_GNU_SOURCE -Wall -Wextra)
+	endif()
 endif()
 
 #*********************************************************
